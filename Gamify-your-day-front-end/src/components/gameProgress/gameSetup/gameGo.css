@@ -1,0 +1,102 @@
+@keyframes spin-me {
+  0% {
+    -webkit-transform: rotateZ(0deg);
+    -moz-transform: rotateZ(0deg);
+    transform: rotateZ(0deg);
+  }
+  100% {
+    -webkit-transform: rotateZ(360deg);
+    -moz-transform: rotateZ(360deg);
+    transform: rotateZ(360deg);
+  }
+}
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+.gamegobody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: 2%;
+}
+
+.title {
+  font-size: 2rem;
+}
+
+.applebtnimage {
+  width: 100%;
+}
+
+.applebtn,
+.applebtnnotask {
+  background-color: transparent;
+  border: none;
+  width: 13rem;
+  margin-top: 14%;
+  position: relative;
+}
+
+.start {
+  position: absolute;
+  top: 54%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  text-align: center;
+  color: white;
+}
+
+.gottentask {
+  color: black;
+  font-size: 2rem;
+  text-align: center;
+  margin-top: 19%;
+}
+
+.applebtn:focus {
+  /*animation-name*/
+  -webkit-animation-name: spin-me;
+  -moz-animation-name: spin-me;
+  animation-name: spin-me;
+  /*animation-iteration-count*/
+  -webkit-animation-iteration-count: infinite;
+  -moz-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  /*animation-duration*/
+  -webkit-animation-duration: 3s;
+  -moz-animation-duration: 3s;
+  animation-duration: 3s;
+  /*animation-timing-function*/
+  -webkit-animation-timing-function: ease-in-out;
+  -moz-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+  transform-origin: 50% 60%;
+  outline: none;
+}
+.applebtnnotask:focus {
+  /*animation-name*/
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both infinite;
+  transform: translate3d(0, 0, 0);
+  perspective: 1000px;
+  outline: none;
+}
