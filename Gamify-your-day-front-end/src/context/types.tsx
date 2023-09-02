@@ -198,16 +198,16 @@ type UserContextType = {
 // A test trial is on the way to test the authentication of the user in this branch.
 type AuthContextType = {
   children?: React.ReactNode;
-  isAuth?: boolean;
-  setIsAuth?: React.Dispatch<React.SetStateAction<boolean>>;
-  token?: string | (() => string) | null | undefined;
-  setToken?: React.Dispatch<React.SetStateAction<string | (() => string)>>;
+  isAuth: boolean;
+  setIsAuth: React.Dispatch<React.SetStateAction<boolean>>;
+  token?: string | (() => string);
+  setToken: React.Dispatch<React.SetStateAction<string | (() => string)>>;
   login?: () => void;
   logout?: () => void;
   disabled?: boolean;
   setDisabled?: React.Dispatch<React.SetStateAction<boolean>>;
-  user?: UserContextType | null;
-  setUser?: React.Dispatch<React.SetStateAction<UserType | null>>;
+  user: UserType | null;
+  setUser: React.Dispatch<React.SetStateAction<UserType | null>>;
   loading?: boolean;
   setLoading?: React.Dispatch<React.SetStateAction<boolean>>;
 };

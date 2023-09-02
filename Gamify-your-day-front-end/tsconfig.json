@@ -18,12 +18,12 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "baseUrl": ".",
+    "baseUrl": "./",
     "paths": {
-      "@/*": ["*"]
+      "@/*": ["src"]
     },
     "checkJs": false,
-    "allowJs": true,
+    "allowJs": true
   },
   "include": ["src"],
   "exclude": [

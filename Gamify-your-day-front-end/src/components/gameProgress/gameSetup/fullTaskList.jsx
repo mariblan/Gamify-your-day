@@ -7,6 +7,7 @@ import { categories } from '../../../utils/categoryCheck';
 import changeClassName from '../../../utils/filterBtnsClassChange';
 import TaskList from './taskList';
 import { useTask } from '../../../taskContext';
+import { useAuth } from 'src/context';
 
 export default function AllTasks() {
   // Initial states for filtering or searching functions for task selection. All filters are false/empty
@@ -18,7 +19,6 @@ export default function AllTasks() {
   const filterContainer = useRef();
   const navigate = useNavigate();
   const {
-    user,
     todaysList,
     userSettings,
     favoriteList,
@@ -27,7 +27,7 @@ export default function AllTasks() {
     disabled,
     setDisabled,
   } = useTask();
-
+  const { user } = useAuth();
   // This checks if there's any filter applied to the task list. If there's no filter selected,
   // the no filter button gets automatically selected again
   useEffect(() => {

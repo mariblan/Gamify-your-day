@@ -1,4 +1,3 @@
-import './components/gameProgress/timer/timer.css';
 import { createContext, useState, useContext, useEffect } from 'react';
 // import {
 //   addToProgress,
@@ -7,12 +6,13 @@ import { createContext, useState, useContext, useEffect } from 'react';
 //   clearToday,
 //   clearCompleted,
 // } from '../fetchDB/fetchDB.js';
-import { confirm } from 'react-confirm-box';
-import { useNavigate, Navigate } from 'react-router-dom';
+// import { confirm } from 'react-confirm-box';
+// import { useNavigate, Navigate } from 'react-router-dom';
 // import { toastErrorSettings } from '../components/toastError/toastErrorSettings';
 import { AuthContextType, UserType } from './types';
-import { Options } from 'react-confirm-box/dist/types';
-import { addToProgress } from '../fetchDB/fetchDB';
+// import { Options } from 'react-confirm-box/dist/types';
+import { checkValidToken } from '../fetchDB/fetchDB';
+import { toast } from 'react-toastify';
 
 const authContextDefaultValues: AuthContextType = {
   isAuth: false,
@@ -39,6 +39,23 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [user, setUser] = useState<UserType | null>(null);
   const [disabled, setDisabled] = useState<boolean>(false);
+
+  useEffect(() => {
+    const verifyLogin = async (token: string | (() => string)) => {
+      try {
+        const res = await checkValidToken(token);
+        if (!res) throw new Error(`${res}`);
+        console.log(res);
+        setUser(res);
+        setIsAuth(true);
+      } catch (error: any) {
+        return toast.error(error.message, toastErrorSettings);
+      }
+    };
+    console.log(token);
+    token && verifyLogin(token);
+  }, [token]);
+  console.log(user);
   //Create a settings context to pass the settings to the game as pet, disabled, gameFinalScreen, selectedPet, canChangePet
   //and also de log out functions.
 
@@ -169,6 +186,8 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
         setIsAuth,
         token,
         setToken,
+        user,
+        setUser,
       }}
     >
       {children}

@@ -5,9 +5,11 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { loginUser } from '../../fetchDB/fetchDB';
 import { useTask } from '../../taskContext';
+import { useAuth } from 'src/context';
 
 export default function Login() {
-  const { isAuthenticated, setToken, toastErrorSettings } = useTask();
+  const { toastErrorSettings } = useTask();
+  const { isAuth, setToken } = useAuth();
 
   const [{ email, password }, setFormState] = useState({
     email: '',
@@ -16,10 +18,13 @@ export default function Login() {
 
   const navigate = useNavigate();
 
-  const handleChange = (e) =>
-    setFormState((prev) => ({ ...prev, [e.target.id]: e.target.value }));
-
-  const handleSubmit = async (e) => {
+  const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
+    console.log(e.target);
+    const target = e.target as HTMLInputElement;
+    console.log(target);
+    setFormState((prev) => ({ ...prev, [target.id]: target.value }));
+  };
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     try {
       e.preventDefault();
       if (!email || !password)
@@ -32,7 +37,7 @@ export default function Login() {
       } else {
         return toast.error(res, toastErrorSettings);
       }
-    } catch (error) {
+    } catch (error: any) {
       toast.error(
         `I failed to fetch from the DB! ${error.message}`,
         toastErrorSettings
@@ -40,7 +45,7 @@ export default function Login() {
     }
   };
 
-  if (isAuthenticated) return <Navigate to={'../auth/alltasks'} />;
+  if (isAuth) return <Navigate to={'../auth/alltasks'} />;
   else
     return (
       <div className='loginWrapper'>

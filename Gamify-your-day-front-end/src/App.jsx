@@ -18,10 +18,7 @@ import { checkValidToken } from './fetchDB/fetchDB';
 import { useAuth, AuthContextProvider } from './context';
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [token, setToken] = useState(localStorage.getItem('token'));
-  const [user, setUser] = useState(null);
-
+  const { isAuth, setIsAuth, user, setUser, token, setToken } = useAuth();
   const toastErrorSettings = {
     position: 'top-center',
     closeOnClick: true,
@@ -30,28 +27,10 @@ function App() {
     autoClose: 2000,
   };
 
-  useEffect(() => {
-    const verifyLogin = async (token) => {
-      try {
-        const res = await checkValidToken(token);
-        if (!res) throw new Error(`${res}`);
-        setUser(res);
-        setIsAuthenticated(true);
-      } catch (error) {
-        return toast.error(error.message, toastErrorSettings);
-      }
-    };
-    token && verifyLogin(token);
-  }, [token]);
-
   return (
     <Router>
       <AuthContextProvider>
         <TaskProvider
-          isAuthenticated={isAuthenticated}
-          setIsAuthenticated={setIsAuthenticated}
-          token={token}
-          setToken={setToken}
           toastErrorSettings={toastErrorSettings}
           user={user}
           setUser={setUser}

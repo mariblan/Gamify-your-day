@@ -19,6 +19,7 @@ import hamsterSad from './images/hamster-sad.png';
 import tortoiseNorm from './images/tortoise-normal.png';
 import tortoiseHappy from './images/tortoise-happy.png';
 import tortoiseSad from './images/tortoise-sad.png';
+import { useAuth } from './context';
 
 const TaskContext = createContext();
 
@@ -27,13 +28,13 @@ const useTask = () => useContext(TaskContext);
 const TaskProvider = ({
   isAuthenticated,
   setIsAuthenticated,
-  user,
   toastErrorSettings,
   token,
   setToken,
   setUser,
   children,
 }) => {
+  const { user } = useAuth();
   //Pets are not in database so here we have all the info needed in the games so it can be passed down to
   //the right components and be used to select the selectedPet.
   const pets = [
@@ -107,8 +108,6 @@ const TaskProvider = ({
   //This makes the confirmation box to pop out so you can decide befrore logging out, and upon confirmation runs the logOut function, which
   //sets the game to the initial state.
   const logOutConfirm = async () => {
-    console.log(todaysList.length);
-    console.log(todaysCompleted.length);
     if (todaysList.length > 0 || todaysCompleted.length > 0) {
       await confirm('Are you sure?', options);
     } else if (todaysList.length === 0 && todaysCompleted.length === 0) {

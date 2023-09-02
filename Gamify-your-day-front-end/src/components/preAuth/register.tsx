@@ -5,9 +5,11 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { registerUser } from '../../fetchDB/fetchDB';
 import { useTask } from '../../taskContext';
+import { useAuth } from 'src/context';
 
 export default function Register() {
-  const { isAuthenticated, setToken, toastErrorSettings } = useTask();
+  const { toastErrorSettings } = useTask();
+  const { isAuth, setToken } = useAuth();
 
   const [{ name, email, password }, setFormState] = useState({
     name: '',
@@ -17,10 +19,14 @@ export default function Register() {
 
   const navigate = useNavigate();
 
-  const handleChange = (e) =>
-    setFormState((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+  const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
+    console.log(e.target);
+    const target = e.target as HTMLInputElement;
+    console.log(target);
+    setFormState((prev) => ({ ...prev, [target.id]: target.value }));
+  };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     try {
       e.preventDefault();
 
@@ -53,12 +59,12 @@ export default function Register() {
       } else {
         return toast.error(res, toastErrorSettings);
       }
-    } catch (error) {
+    } catch (error: any) {
       toast.error(error.stack, toastErrorSettings);
     }
   };
 
-  if (isAuthenticated) return <Navigate to={'../auth/alltasks'} />;
+  if (isAuth) return <Navigate to={'../auth/alltasks'} />;
   else
     return (
       <div className='registerWrapper'>

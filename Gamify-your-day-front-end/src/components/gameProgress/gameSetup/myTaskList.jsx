@@ -6,10 +6,10 @@ import { useState, useEffect } from 'react';
 import { useTask } from '../../../taskContext';
 import { toast } from 'react-toastify';
 import { confirm } from 'react-confirm-box';
+import { useAuth } from 'src/context';
 
 export default function MyTaskList() {
   const {
-    user,
     userProgress,
     todaysList,
     selectedPet: { name, mood, hungerlevel },
@@ -22,6 +22,7 @@ export default function MyTaskList() {
     disabled,
     setDisabled,
   } = useTask();
+  const { user } = useAuth();
   const navigate = useNavigate();
 
   const [showConcluded, setShowConcluded] = useState(false);
