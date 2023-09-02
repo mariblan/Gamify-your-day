@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const port =
-  process.env.REACT_APP_GAMIFY_BACKEND_URL || 'http://localhost:5000/';
+  import.meta.env.REACT_APP_GAMIFY_BACKEND_URL || 'http://localhost:5000/';
 // 'http://localhost:5000/';
 
 const getAllTasks = async () => {

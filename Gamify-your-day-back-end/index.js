@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import dbConnection from './dbConnection.js';
+import dbConnection from './DB/dbConnection.js';
 dbConnection();
 import cors from 'cors';
 import express from 'express';

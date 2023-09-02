@@ -19,14 +19,19 @@ import hamsterSad from './images/hamster-sad.png';
 import tortoiseNorm from './images/tortoise-normal.png';
 import tortoiseHappy from './images/tortoise-happy.png';
 import tortoiseSad from './images/tortoise-sad.png';
-import { GottenTaskContextType } from './context/contexType';
 
 const TaskContext = createContext();
 
 const useTask = () => useContext(TaskContext);
 
 const TaskProvider = ({
+  isAuthenticated,
+  setIsAuthenticated,
+  user,
   toastErrorSettings,
+  token,
+  setToken,
+  setUser,
   children,
 }) => {
   //Pets are not in database so here we have all the info needed in the games so it can be passed down to
@@ -99,7 +104,48 @@ const TaskProvider = ({
       );
     },
   };
+  //This makes the confirmation box to pop out so you can decide befrore logging out, and upon confirmation runs the logOut function, which
+  //sets the game to the initial state.
+  const logOutConfirm = async () => {
+    console.log(todaysList.length);
+    console.log(todaysCompleted.length);
+    if (todaysList.length > 0 || todaysCompleted.length > 0) {
+      await confirm('Are you sure?', options);
+    } else if (todaysList.length === 0 && todaysCompleted.length === 0) {
+      logOut();
+    }
+  };
 
+  const logOut = () => {
+    addToProgress(user._id, 0);
+    setUserProgress(0);
+    clearToday(user._id);
+    setTodaysCompleted([]);
+    clearCompleted(user._id);
+    setUserSettings([]);
+    setTodaysList([]);
+    setGottenTask({
+      category: '',
+      taskdescription: '',
+      difficulty: '',
+      taskid: 0,
+      taskName: '',
+      taskTime: {},
+    });
+    clearFailed(user._id);
+    setTodaysFailed([]);
+    clearSuccess(user._id);
+    setTodaysSuccess([]);
+    setGameFinalScreen(true);
+    setDisabled(false);
+    setSelectedPet(false);
+    setCanChangePet(true);
+    localStorage.removeItem('token');
+    setIsAuthenticated(false);
+    setToken('');
+    setUser(null);
+    setTimeout(() => <Navigate to={'../login'} />, 150);
+  };
 
   //Fetching the generic task from database and setting them to display in a different order
   //each time.
@@ -118,6 +164,12 @@ const TaskProvider = ({
   //If turns to true upon clicking start in the my list component, so the settings of personalized tasks can be added
   //to the userSettings. It turns to back to false in the failure and success screens.
   const [nextClicked, setNextClicked] = useState(false);
+
+  //To pass the infor of the selected pet to the timer components
+  const [selectedPet, setSelectedPet] = useState(false);
+
+  //To establish that the pet cannot be change once the game starts.
+  const [canChangePet, setCanChangePet] = useState(true);
 
   //Thisn passes the array of randomize task through the app
   const [userSettings, setUserSettings] = useState([]);
@@ -169,29 +221,29 @@ const TaskProvider = ({
   //   taskid: 0,
   //   taskName: "",
   // });
-  const [gottenTask, setGottenTask] = useState<GottenTaskContextType | null>(null);
+  const [gottenTask, setGottenTask] = useState(null);
   //The values for the timer component so it can be passed through the success and failure screens and render
   //how long it took the person to do the task.
-  const [minutes, setMinutes] = useState<number>(0);
-  const [seconds, setSeconds] = useState<number>(0);
+  const [minutes, setMinutes] = useState(0);
+  const [seconds, setSeconds] = useState(0);
 
   //Disables the buttons uppon click when a confirm box is open, so the user cannot go to another screen until the
   //confirm box has been closed.
-  const [disabled, setDisabled] = useState<boolean>(false);
+  const [disabled, setDisabled] = useState(false);
 
   //This sets if the task is forfeited so the failures screen can send the right info to the array.
-  const [forfeited, setForfeited] = useState<boolean>(false);
+  const [forfeited, setForfeited] = useState(false);
 
   //This allows the game to know when to redirect the player to the final screen
-  const [gameFinalScreen, setGameFinalScreen] = useState<boolean>(true);
+  const [gameFinalScreen, setGameFinalScreen] = useState(true);
 
   // useEffect(() => {
   //   setGameFinalScreen(true);
   // }, []);
 
-  const [breakInterval, setBreakInterval] = useState<boolean>(false);
+  const [breakInterval, setBreakInterval] = useState(false);
 
-  const [counter, setCounter] = useState<string | number>('Start!');
+  const [counter, setCounter] = useState('Start!');
   return (
     <TaskContext.Provider
       value={{

@@ -4,9 +4,7 @@ import { useNavigate } from 'react-router-dom';
 // import searchIcon from "../../../images/search-icon.png";
 import noFilter from '../../../images/nofilter-icon.png';
 import { categories } from '../../../utils/categoryCheck';
-import changeClassName, {
-  newchangeClassName,
-} from '../../../utils/filterBtnsClassChange';
+import changeClassName from '../../../utils/filterBtnsClassChange';
 import TaskList from './taskList';
 import { useTask } from '../../../taskContext';
 
