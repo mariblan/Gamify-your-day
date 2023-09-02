@@ -2,8 +2,62 @@
 export default {
   content: [],
   theme: {
-    extend: {},
+    screens: {
+      xxs: '320px',
+      xs: '475px',
+    },
+    fontSize: {
+      xxs: '0.625rem',
+    },
+    extend: {
+      scale: {
+        102: '1.02',
+      },
+      colors: {
+        skin: {
+          box: 'rgb(255, 255, 255)',
+          bodytimer: 'rgb(235, 243, 192)',
+          bodyselection: 'rgb(235, 243, 192)',
+          confirmboxbg: '#f5ead6',
+          borderconfirmbox: '#816425',
+          menubg: 'rgb(109, 212, 109)',
+          menuborder: 'rgb(109, 212, 109)',
+          forfeitTaskbg: 'rgba(182, 158, 48, 0.7)',
+          forfeitTaskborderTandL: 'rgb(182, 158, 48)',
+          forfeitTaskborderRandB: 'rgba(182, 158, 48, 0.7)',
+          mainBtnbg: 'rgb(66, 165, 66)',
+          mainBtnbordertop: 'rgb(112, 218, 112)',
+          failureandsuccessBtntop: 'rgb(112, 218, 112)',
+          confirmboxBtnbordertop: 'rgb(112, 218, 112)',
+          mainBtnborderleft: 'rgb(58, 155, 58)',
+          failureandsuccessBtnleft: 'rgb(58, 155, 58)',
+          confirmboxBtnborderleft: 'rgb(58, 155, 58)',
+          mainBtnborderRandB: 'rgb(66, 165, 66)',
+          failureandsuccessBtnright: 'rgb(66, 165, 66)',
+          failureandsuccessBtnbg: 'rgb(66, 165, 66)',
+          confirmboxBtnborderright: 'rgb(66, 165, 66)',
+          confirmboxBtnbg: 'rgb(66, 165, 66)',
+          fadedBtnbordertop: 'rgb(106, 199, 106)',
+          fadedBtnborderleft: 'rgb(82, 187, 82)',
+          fadedBtnborderright: 'rgb(109, 212, 109)',
+          confirmBtnpetbg: 'rgb(109, 212, 109)',
+          confirmBtnpetborder: 'rgb(109, 212, 109)',
+          fadedBtnborderbottom: 'rgb(130, 221, 130)',
+          failureandsuccessBtnbottom: 'rgb(130, 221, 130)',
+          confirmboxBtnborderbottom: 'rgb(130, 221, 130)',
+          fadedBtnborderbg: 'rgb(112, 201, 112)',
+          petbtnbg: 'rgba(255, 255, 255, 0.3)',
+          petbtnborder: '#e9c77c8c',
+          petbtnbgactive: 'rgba(255, 255, 255, 0.3)',
+          petbtnborderactive: '#816425',
+          boxshadow: 'rgba(0, 0, 0, 0.3)',
+        },
+      },
+    },
+    fontFamily: {
+      rubik: ['Rubik', 'sans-serif'],
+      roboto: ['Roboto', 'sans-serif'],
+    },
   },
   plugins: [],
-}
-
+};

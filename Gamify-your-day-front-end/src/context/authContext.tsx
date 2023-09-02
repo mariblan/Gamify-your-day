@@ -9,20 +9,29 @@ import {
 } from '../fetchDB/fetchDB';
 import { confirm } from 'react-confirm-box';
 import { useNavigate, Navigate } from 'react-router-dom';
-import { UserContextType } from './contexType';
+import { toastErrorSettings } from '../components/toastError/toastErrorSettings';
+import { AuthContextType, UserContextType, UserType } from './contexType';
+import type { OptionsType } from './settingsType';
 
-const AuthContext = createContext();
+const AuthContext = createContext<AuthContextType>({} as AuthContextType);
 
 const useAuthContext = () => useContext(AuthContext);
 
-const AuthContextProvider = ({ toastErrorSettings, children }) => {
+const AuthContextProvider = ({ toastErrorSettings } , { children }: { children: React.ReactNode }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-  const [token, setToken] = useState<string>(localStorage.getItem('token'));
-  const [user, setUser] = useState<UserContextType | null>(null);
+  const [token, setToken] = useState<(() => string) | string>(localStorage.getItem('token') || '');
+  const [user, setUser] = useState<UserType | null>(null);
+  const [disabled, setDisabled] = useState<boolean>(false);
+  const [gameFinalScreen, setGameFinalScreen] = useState<boolean>(false);
+  const [selectedPet, setSelectedPet] = useState<null | string>(null);
+  const [canChangePet, setCanChangePet] = useState<boolean>(true);
+  
+  const navigate = useNavigate();
   //The options for the setup of the log out confirm box and the functions of its buttons.
   const options = {
-    render: (message, onConfirm, onCancel) => {
+    render: (message , onConfirm, onCancel) => {
       return (
+        <>
         <div className='react-confirm-box'>
           <h4>
             If you log out you will lose all your progress and personalised
@@ -48,6 +57,7 @@ const AuthContextProvider = ({ toastErrorSettings, children }) => {
             </button>
           </div>
         </div>
+        </>
       );
     },
   };
@@ -56,6 +66,7 @@ const AuthContextProvider = ({ toastErrorSettings, children }) => {
   const logOutConfirm = async () => {
     if (todaysList.length > 0 || todaysCompleted.length > 0) {
       await confirm('Are you sure?', options);
+
     } else if (todaysList.length === 0 && todaysCompleted.length === 0) {
       logOut();
     }

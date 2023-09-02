@@ -1,26 +1,4 @@
-type UserContextType = {
-  id: string;
-  name: string;
-  email: string;
-  password: string;
-  progress: number;
-  todayList: string[];
-  todayCompleted: string[];
-  todayFailed: string[];
-  todaySuccess: string[];
-  favoriteList: string[];
-  active: boolean;
-};
-
-type AuthContextType = {
-  children?: React.ReactNode;
-  isAuthenticated: boolean;
-  login: () => void;
-  logout: () => void;
-  user: UserContextType | null;
-};
-
-type PetContextType = {
+type PetType = {
   petId: number;
   name: string;
   classname: string;
@@ -31,41 +9,142 @@ type PetContextType = {
   completion: string;
 };
 
-type PetSettingsContextType = {
-  selectedPet: PetContextType | null;
+type PetContextType = {
+  children?: React.ReactNode;
+  selectedPet: PetType | null;
   setSelectedPet: React.Dispatch<React.SetStateAction<PetContextType | null>>;
   canChangePet: boolean;
   setCanChangePet: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-type TaskContextType = {
+type TaskTimeType = {
+  minEasy: number;
+  maxEasy: number;
+  minMedium: number;
+  maxMedium: number;
+  minHard: number
+  maxHard: number,
+}
+
+type TaskDescriptionsType = {
+  easy: string;
+  medium: string;
+  hard: string;
+}
+
+type TaskType = {
   id: string;
-  taskname: string;
-  tasktime: string;
-  taskDescription: string;
-  category: string;
-  difficulty: string;
-};
-type GottenTaskContextType = {
-  category: string;
-  taskdescription: string;
-  difficulty: string;
-  taskid: number;
   taskName: string;
-  taskTime: string;
-};
-type Task = {
-  children?: React.ReactNode;
-  isAuth: boolean;
+  taskTime: TaskTimeType | number;
+  taskDescriptions: TaskDescriptionsType | string;
+  category: string;
+  difficulty: string;
   user: UserContextType | null;
+}
+
+type TaskContextType = {
+  children?: React.ReactNode;
+  task?: TaskType | null;
+  setTask?: React.Dispatch<React.SetStateAction<TaskType | null>>;
+  gotenTask?: TaskType | null;
+  setGotenTask?: React.Dispatch<React.SetStateAction<TaskType | null>>;
+  taskName?: string;
+  setTaskName?: React.Dispatch<React.SetStateAction<string>>;
+  taskTime?: TaskTimeType | string;
+  setTaskTime?: React.Dispatch<React.SetStateAction<TaskTimeType | string>>;
+  taskDescription?: TaskDescriptionsType | string;
+  setTaskDescription?: React.Dispatch<React.SetStateAction<TaskDescriptionsType | string>>;
+  category?: string;
+  setCategory?: React.Dispatch<React.SetStateAction<string>>;
+  difficulty?: string;
+  setDifficulty?: React.Dispatch<React.SetStateAction<string>>;
+  user: UserContextType | null;
+  setUser: React.Dispatch<React.SetStateAction<UserContextType | null>>;
 };
 
-export type {
-  AuthContextType,
-  UserContextType,
-  PetSettingsContextType,
+type HistoryItemType = {
+  id: string;
+  pet: string;
+  progress: number;
+  todayList: TaskType[] | [];
+  todayCompleted: TaskType[] | [];
+  todayFailed: TaskType[] | [];
+  todaySuccess: TaskType[] | [];
+  createdAt: string;
+};
+
+type HistoryType = {
+  id: string;
+  date: string;
+  historyItem: HistoryItemType[] | null;
+};
+
+type UserType = {
+  id: string;
+  name: string;
+  email: string;
+  password: string;
+  progress: number;
+  todayList: TaskType[] | [];
+  todayCompleted: TaskType[] | [];
+  todayFailed: TaskType[] | [];
+  todaySuccess: TaskType[] | [];
+  favoriteList: TaskType[] | [];
+  createdTasks: TaskType[] | [];
+  history: HistoryType[];
+  active: boolean;
+};
+
+type UserContextType = {
+  children?: React.ReactNode;
+  id?: string;
+  user?: UserType | null;
+  setUser?: React.Dispatch<React.SetStateAction<UserType | null>>;
+  todayList?: TaskType[] | [];
+  setTodayList?: React.Dispatch<React.SetStateAction<TaskType[] | []>>;
+  todayCompleted?: TaskType[] | [];
+  setTodayCompleted?: React.Dispatch<React.SetStateAction<TaskType[] | []>>;
+  todayFailed?: TaskType[] | [];
+  setTodayFailed?: React.Dispatch<React.SetStateAction<TaskType[] | []>>;
+  todaySuccess?: TaskType[] | [];
+  setTodaySuccess?: React.Dispatch<React.SetStateAction<TaskType[] | []>>;
+  favoriteList?: TaskType[] | [];
+  setFavoriteList?: React.Dispatch<React.SetStateAction<TaskType[] | []>>;
+  createdTasks?: TaskType[] | [];
+  setCreatedTasks?: React.Dispatch<React.SetStateAction<TaskType[] | []>>;
+  history?: HistoryType[];
+  setHistory?: React.Dispatch<React.SetStateAction<HistoryType[]>>;
+  active?: boolean;
+  setActive?: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+
+type AuthContextType = {
+  children?: React.ReactNode;
+  isAuthenticated: boolean;
+  login: () => void;
+  logout: () => void;
+  user?: UserContextType | null;
+};
+
+
+
+
+
+
+
+
+
+export type { 
+  PetType,
   PetContextType,
+  TaskTimeType,
+  TaskDescriptionsType,
+  TaskType,
   TaskContextType,
-  GottenTaskContextType,
-  Task,
+  HistoryItemType,
+  HistoryType,
+  UserType,
+  UserContextType,
+  AuthContextType,
 };
