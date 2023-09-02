@@ -1,19 +1,33 @@
 import './components/gameProgress/timer/timer.css';
 import { createContext, useState, useContext, useEffect } from 'react';
-import {
-  addToProgress,
-  clearFailed,
-  clearSuccess,
-  clearToday,
-  clearCompleted,
-} from '../fetchDB/fetchDB.js';
+// import {
+//   addToProgress,
+//   clearFailed,
+//   clearSuccess,
+//   clearToday,
+//   clearCompleted,
+// } from '../fetchDB/fetchDB.js';
 import { confirm } from 'react-confirm-box';
 import { useNavigate, Navigate } from 'react-router-dom';
 // import { toastErrorSettings } from '../components/toastError/toastErrorSettings';
-import { AuthContextType, UserContextType, UserType } from './types';
+import { AuthContextType, UserType } from './types';
 import { Options } from 'react-confirm-box/dist/types';
+import { addToProgress } from '../fetchDB/fetchDB';
 
-const AuthContext = createContext<AuthContextType>({} as AuthContextType);
+const authContextDefaultValues: AuthContextType = {
+  isAuth: false,
+  setIsAuth: () => {},
+  token: '',
+  setToken: () => {},
+  login: () => {},
+  logout: () => {},
+  user: null,
+  setUser: () => {},
+  loading: false,
+  setLoading: () => {},
+};
+
+const AuthContext = createContext<AuthContextType>(authContextDefaultValues);
 
 const useAuth = () => useContext(AuthContext);
 
@@ -22,11 +36,12 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [token, setToken] = useState<(() => string) | string>(
     localStorage.getItem('token') || ''
   );
-
+  const [loading, setLoading] = useState<boolean>(false);
+  const [user, setUser] = useState<UserType | null>(null);
+  const [disabled, setDisabled] = useState<boolean>(false);
   //Create a settings context to pass the settings to the game as pet, disabled, gameFinalScreen, selectedPet, canChangePet
   //and also de log out functions.
-  //   const [user, setUser] = useState<UserType | null>(null);
-  //   const [disabled, setDisabled] = useState<boolean>(false);
+
   //   const [gameFinalScreen, setGameFinalScreen] = useState<boolean>(false);
   //   const [selectedPet, setSelectedPet] = useState<null | string>(null);
   //   const [canChangePet, setCanChangePet] = useState<boolean>(true);
@@ -106,7 +121,7 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
   //     setTimeout(() => <Navigate to={'../login'} />, 150);
   //   };
 
-  //Thisn passes the array of randomize task through the app
+  //This passes the array of randomize task through the app
   //   const [userSettings, setUserSettings] = useState([]);
 
   //   // Setting the info from the database in different lists

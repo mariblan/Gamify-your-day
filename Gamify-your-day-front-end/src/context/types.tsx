@@ -204,6 +204,8 @@ type AuthContextType = {
   setToken?: React.Dispatch<React.SetStateAction<string | (() => string)>>;
   login?: () => void;
   logout?: () => void;
+  disabled?: boolean;
+  setDisabled?: React.Dispatch<React.SetStateAction<boolean>>;
   user?: UserContextType | null;
   setUser?: React.Dispatch<React.SetStateAction<UserType | null>>;
   loading?: boolean;

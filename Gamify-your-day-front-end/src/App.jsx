@@ -15,6 +15,7 @@ import TaskFailure from './components/gameProgress/timer/taskFailure';
 import GameOver from './components/gameProgress/endGame/gameOver';
 import { TaskProvider } from './taskContext';
 import { checkValidToken } from './fetchDB/fetchDB';
+import { useAuth, AuthContextProvider } from './context';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -45,31 +46,33 @@ function App() {
 
   return (
     <Router>
-      <TaskProvider
-        isAuthenticated={isAuthenticated}
-        setIsAuthenticated={setIsAuthenticated}
-        token={token}
-        setToken={setToken}
-        toastErrorSettings={toastErrorSettings}
-        user={user}
-        setUser={setUser}
-      >
-        <Routes>
-          <Route path='/' element={<GameIntro />} />
-          <Route path='login' element={<Login />} />
-          <Route path='register' element={<Register />} />
-          <Route path='auth' element={<RequireLogin />}>
-            <Route path='alltasks' element={<AllTasks />} />
-            <Route path='mytasks' element={<MyTaskList />} />
-            <Route path='petselection' element={<AnimalSelection />} />
-            <Route path='gamego' element={<GetTask />} />
-            <Route path='tasktimer' element={<TaskTimer />} />
-            <Route path='tasksuccess' element={<TaskSuccess />} />
-            <Route path='taskfailure' element={<TaskFailure />} />
-            <Route path='gameover' element={<GameOver />} />
-          </Route>
-        </Routes>
-      </TaskProvider>
+      <AuthContextProvider>
+        <TaskProvider
+          isAuthenticated={isAuthenticated}
+          setIsAuthenticated={setIsAuthenticated}
+          token={token}
+          setToken={setToken}
+          toastErrorSettings={toastErrorSettings}
+          user={user}
+          setUser={setUser}
+        >
+          <Routes>
+            <Route path='/' element={<GameIntro />} />
+            <Route path='login' element={<Login />} />
+            <Route path='register' element={<Register />} />
+            <Route path='auth' element={<RequireLogin />}>
+              <Route path='alltasks' element={<AllTasks />} />
+              <Route path='mytasks' element={<MyTaskList />} />
+              <Route path='petselection' element={<AnimalSelection />} />
+              <Route path='gamego' element={<GetTask />} />
+              <Route path='tasktimer' element={<TaskTimer />} />
+              <Route path='tasksuccess' element={<TaskSuccess />} />
+              <Route path='taskfailure' element={<TaskFailure />} />
+              <Route path='gameover' element={<GameOver />} />
+            </Route>
+          </Routes>
+        </TaskProvider>
+      </AuthContextProvider>
       <ToastContainer />
     </Router>
   );
