@@ -9,7 +9,7 @@ import { createContext, useState, useContext, useEffect } from 'react';
 // import { confirm } from 'react-confirm-box';
 // import { useNavigate, Navigate } from 'react-router-dom';
 // import { toastErrorSettings } from '../components/toastError/toastErrorSettings';
-import { AuthContextType, UserType } from './types';
+import { AuthContextType, UserType } from '../types';
 // import { Options } from 'react-confirm-box/dist/types';
 import { checkValidToken } from '../fetchDB/fetchDB';
 import { toast } from 'react-toastify';
@@ -55,7 +55,6 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
     console.log(token);
     token && verifyLogin(token);
   }, [token]);
-  console.log(user);
   //Create a settings context to pass the settings to the game as pet, disabled, gameFinalScreen, selectedPet, canChangePet
   //and also de log out functions.
 
