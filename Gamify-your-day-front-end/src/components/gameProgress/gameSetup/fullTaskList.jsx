@@ -33,7 +33,7 @@ export default function AllTasks() {
   useEffect(() => {
     if (filter.length === 0) noFilterBtn.current.className += ' filterSelected';
   }, [filter]);
-
+  
   // Adds filters to an array so the child component returns only tasks that have the same category
   // as the ones selected. Also disables filtering by favorites.
   const filterByCategory = (e) => {

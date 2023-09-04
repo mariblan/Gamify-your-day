@@ -1,3 +1,5 @@
+import type { ToastOptions } from 'react-toastify';
+
 // Definition of the types used in the context of the application
 
 // Pet types and pet context types
@@ -212,6 +214,35 @@ type AuthContextType = {
   setLoading?: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
+type SettingsContextType = {
+  children?: React.ReactNode;
+  pets: PetType[] | null;
+  disabled: boolean;
+  setDisabled: React.Dispatch<React.SetStateAction<boolean>>;
+  gameFinalScreen: boolean;
+  setGameFinalScreen: React.Dispatch<React.SetStateAction<boolean>>;
+  selectedPet: PetType | null;
+  setSelectedPet: React.Dispatch<React.SetStateAction<PetType | null>>;
+  canChangePet: boolean;
+  setCanChangePet: React.Dispatch<React.SetStateAction<boolean>>;
+  toastErrorSettings: ToastOptions;
+};
+
+type ConfirmBoxButtonsType = {
+  children?: React.ReactNode;
+  onConfirm: () => void;
+  onCancel: () => void;
+  taskFailure: boolean;
+  startGame: boolean;
+  isLogOut: boolean;
+  setPaused: React.Dispatch<React.SetStateAction<boolean>>;
+  setDisabled: React.Dispatch<React.SetStateAction<boolean>>;
+  navigate: (path: string) => void;
+  setNextClicked: React.Dispatch<React.SetStateAction<boolean>>;
+  setCanChangePet: React.Dispatch<React.SetStateAction<boolean>>;
+  logOut: () => void;
+};
+
 export type {
   PetType,
   PetContextType,
@@ -224,4 +255,6 @@ export type {
   UserType,
   UserContextType,
   AuthContextType,
+  SettingsContextType,
+  ConfirmBoxButtonsType,
 };

@@ -19,9 +19,7 @@ export default function Login() {
   const navigate = useNavigate();
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
-    console.log(e.target);
     const target = e.target as HTMLInputElement;
-    console.log(target);
     setFormState((prev) => ({ ...prev, [target.id]: target.value }));
   };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
