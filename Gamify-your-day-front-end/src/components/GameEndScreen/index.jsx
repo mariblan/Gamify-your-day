@@ -1,6 +1,6 @@
-import { useTask } from '../../../taskContext';
-import renderApples from '../../../utils/generateApples';
-import './gameOver.css';
+import { useTask } from 'src/context/taskContext';
+import renderApples from 'src/utils/generateApples';
+import 'src/styles/gameOver.css';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 

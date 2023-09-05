@@ -1,17 +1,13 @@
 import { useState, useEffect } from 'react';
-import './timer.css';
-import apple from '../../../images/apple-color.png';
-import checkCategory from '../../../utils/categoryCheck';
+import 'src/styles/timer.css';
+import apple from 'src/images/apple-color.png';
+import checkCategory from 'src/utils/categoryCheck';
 import TaskTimerRender from './taskTimerRender';
 import { useNavigate } from 'react-router-dom';
-import { useTask } from '../../../taskContext';
-import { TimerSeconds } from '../../../utils/timerSetTimeout';
+import { useTask } from 'src/taskContext';
+import { TimerSeconds } from 'src/utils/timerSetTimeout';
 import { confirm } from 'react-confirm-box';
-import {
-  addToProgress,
-  addFailed,
-  removeFromToday,
-} from '../../../fetchDB/fetchDB';
+import { addToProgress, addFailed, removeFromToday } from 'src/DB/fetchDB';
 
 export default function TaskTimer() {
   const [timerInit, setTimerInit] = useState(false);

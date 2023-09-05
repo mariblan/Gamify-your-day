@@ -1,4 +1,4 @@
-import { addToToday, removeFromToday } from '../fetchDB/fetchDB';
+import { addToToday, removeFromToday } from '../DB/fetchDB';
 
 // maybe instead of on click on the heart just run select task for all the div.
 

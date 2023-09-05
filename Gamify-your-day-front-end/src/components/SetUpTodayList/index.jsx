@@ -1,9 +1,9 @@
 import MyList from './myList';
-import reload from '../../../images/change-icon.png';
-import renderApples from '../../../utils/generateApples';
+import reload from 'src/images/change-icon.png';
+import renderApples from 'src/utils/generateApples';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { useTask } from '../../../taskContext';
+import { useTask } from 'src/context/taskContext';
 import { toast } from 'react-toastify';
 import { confirm } from 'react-confirm-box';
 import { useAuth } from 'src/context';

@@ -1,11 +1,11 @@
-import checkCategory from '../../../utils/categoryCheck';
-import redX from '../../../images/failed-task-icon.png';
-import greenCheck from '../../../images/check-icon.png';
-import notFavIcon from '../../../images/fav-icon.png';
-import { loadFavorites, toggleFavorites } from '../../../utils/displayFavorite';
-import renderApples from '../../../utils/generateApples';
+import checkCategory from 'src/utils/categoryCheck';
+import redX from 'src/images/failed-task-icon.png';
+import greenCheck from 'src/images/check-icon.png';
+import notFavIcon from 'src/images/fav-icon.png';
+import { loadFavorites, toggleFavorites } from 'src/utils/displayFavorite';
+import renderApples from 'src/utils/generateApples';
 import { useState, useEffect } from 'react';
-import { useTask } from '../../../taskContext';
+import { useTask } from 'src/context/taskContext';
 
 export default function TaskExpanded({
   task: { _id, taskName, taskTime, category },

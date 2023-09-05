@@ -1,6 +1,6 @@
 import TaskMini from './minifiedTask.jsx';
 import { useState, useEffect } from 'react';
-import { useTask } from '../../../taskContext.jsx';
+import { useTask } from 'src/context/taskContext.jsx';
 
 export default function TaskList({
   filterSelection,

@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
-import redX from '../../../images/failed-task-icon.png';
-import greenCheck from '../../../images/check-icon.png';
-import renderApples from '../../../utils/generateApples';
-import { loadFavorites, toggleFavorites } from '../../../utils/displayFavorite';
-import checkCategory from '../../../utils/categoryCheck';
-import notFavIcon from '../../../images/fav-icon.png';
-import { useTask } from '../../../taskContext';
+import redX from 'src/images/failed-task-icon.png';
+import greenCheck from 'src/images/check-icon.png';
+import renderApples from 'src/utils/generateApples';
+import { loadFavorites, toggleFavorites } from 'src/utils/displayFavorite';
+import checkCategory from 'src/utils/categoryCheck';
+import notFavIcon from 'src/images/fav-icon.png';
+import { useTask } from 'src/context/taskContext';
 
 export default function TaskConcluded({
   task: { _id, taskName, sliderValue, difficulty, reward, category, time },

@@ -1,10 +1,10 @@
-import './userAuth.css';
+import 'src/styles/userAuth.css';
 import { useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { registerUser } from '../../fetchDB/fetchDB';
-import { useTask } from '../../taskContext';
+import { registerUser } from 'src/DB/fetchDB';
+import { useTask } from 'src/context/taskContext';
 import { useAuth } from 'src/context';
 
 export default function Register() {

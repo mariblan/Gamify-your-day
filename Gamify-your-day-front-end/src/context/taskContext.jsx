@@ -1,4 +1,3 @@
-import './components/gameProgress/timer/timer.css';
 import { createContext, useState, useContext, useEffect } from 'react';
 import {
   getAllTasks,
@@ -7,19 +6,19 @@ import {
   clearSuccess,
   clearToday,
   clearCompleted,
-} from './fetchDB/fetchDB';
+} from '../DB/fetchDB';
 import { confirm } from 'react-confirm-box';
 import { useNavigate, Navigate } from 'react-router-dom';
-import canaryNorm from './images/canary-normal.png';
-import canaryHappy from './images/canary-happy.png';
-import canarySad from './images/canary-sad.png';
-import hamsterNorm from './images/hamster-normal.png';
-import hamsterHappy from './images/hamster-happy.png';
-import hamsterSad from './images/hamster-sad.png';
-import tortoiseNorm from './images/tortoise-normal.png';
-import tortoiseHappy from './images/tortoise-happy.png';
-import tortoiseSad from './images/tortoise-sad.png';
-import { useAuth } from './context';
+import canaryNorm from 'src/images/canary-normal.png';
+import canaryHappy from 'src/images/canary-happy.png';
+import canarySad from 'src/images/canary-sad.png';
+import hamsterNorm from 'src/images/hamster-normal.png';
+import hamsterHappy from 'src/images/hamster-happy.png';
+import hamsterSad from 'src/images/hamster-sad.png';
+import tortoiseNorm from 'src/images/tortoise-normal.png';
+import tortoiseHappy from 'src/images/tortoise-happy.png';
+import tortoiseSad from 'src/images/tortoise-sad.png';
+import { useAuth } from 'src/context';
 
 const TaskContext = createContext();
 

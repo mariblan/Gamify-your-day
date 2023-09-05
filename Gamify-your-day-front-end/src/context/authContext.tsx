@@ -9,9 +9,9 @@ import { createContext, useState, useContext, useEffect } from 'react';
 // import { confirm } from 'react-confirm-box';
 // import { useNavigate, Navigate } from 'react-router-dom';
 // import { toastErrorSettings } from '../components/toastError/toastErrorSettings';
-import { AuthContextType, UserType } from '../types';
+import { AuthContextType, UserType } from 'src/types';
 // import { Options } from 'react-confirm-box/dist/types';
-import { checkValidToken } from '../fetchDB/fetchDB';
+import { checkValidToken } from 'src/DB/fetchDB';
 import { toast } from 'react-toastify';
 
 const authContextDefaultValues: AuthContextType = {

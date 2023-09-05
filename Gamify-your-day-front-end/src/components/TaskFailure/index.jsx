@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
-import { useTask } from '../../../taskContext';
-import './timer.css';
-import applecolor from '../../../images/apple-color.png';
-import applebw from '../../../images/apple-bw.png';
-import canarysad from '../../../images/canary-sad.png';
-import failedicon from '../../../images/failed-task-icon.png';
-import checkCategory from '../../../utils/categoryCheck';
+import { useTask } from 'src/context/taskContext';
+import 'src/styles/timer.css';
+import applecolor from 'src/images/apple-color.png';
+import applebw from 'src/images/apple-bw.png';
+import canarysad from 'src/images/canary-sad.png';
+import failedicon from 'src/images/failed-task-icon.png';
+import checkCategory from 'src/utils/categoryCheck';
 import { useNavigate } from 'react-router-dom';
-import renderApples from '../../../utils/generateApples';
-import { addFailed, removeFromToday } from '../../../fetchDB/fetchDB';
+import renderApples from 'src/utils/generateApples';
+import { addFailed, removeFromToday } from 'src/DB/fetchDB';
 
 export default function TaskFailure() {
   const {
