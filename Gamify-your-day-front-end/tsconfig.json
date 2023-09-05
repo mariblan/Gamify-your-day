@@ -20,7 +20,17 @@
     "noFallthroughCasesInSwitch": true,
     "baseUrl": "./",
     "paths": {
-      "@/*": ["src"]
+      // "@components/*": ["src/components/*"],
+      // "@types/*": ["src/types/*"],
+      // "@utils/*": ["src/utils/*"],
+      // "@contexts/*": ["src/contexts/*"],
+      // "@hooks/*": ["src/hooks/*"],
+      // "@assets/*": ["src/assets/*"],
+      // "@styles/*": ["src/styles/*"],
+      // "@data/*": ["src/data/*"],
+      // "@fetchDB/*": ["src/fetchDB/*"],
+      // "@images/*": ["src/images/*"],
+      "@*": ["./*"]
     },
     "checkJs": false,
     "allowJs": true

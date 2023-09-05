@@ -1,4 +1,5 @@
 import type { ToastOptions } from 'react-toastify';
+import type { Options } from 'react-confirm-box/dist/types';
 
 // Definition of the types used in the context of the application
 
@@ -226,9 +227,10 @@ type SettingsContextType = {
   canChangePet: boolean;
   setCanChangePet: React.Dispatch<React.SetStateAction<boolean>>;
   toastErrorSettings: ToastOptions;
+  options?: Options;
 };
 
-type ConfirmBoxButtonsType = {
+type ConfirmBoxType = {
   children?: React.ReactNode;
   onConfirm: () => void;
   onCancel: () => void;
@@ -240,8 +242,44 @@ type ConfirmBoxButtonsType = {
   navigate: (path: string) => void;
   setNextClicked: React.Dispatch<React.SetStateAction<boolean>>;
   setCanChangePet: React.Dispatch<React.SetStateAction<boolean>>;
+  logOut?: () => void;
+};
+
+type ConfirmBoxButtonsType = {
+  onCancel: () => void;
+  onConfirm: () => void;
+  taskFailure: boolean;
+  startGame: boolean;
+  isLogOut: boolean;
+  setPaused: React.Dispatch<React.SetStateAction<boolean>>;
+  setDisabled: React.Dispatch<React.SetStateAction<boolean>>;
+  navigate: (path: string) => void;
+  setNextClicked: React.Dispatch<React.SetStateAction<boolean>>;
+  setCanChangePet: React.Dispatch<React.SetStateAction<boolean>>;
   logOut: () => void;
 };
+
+type CategoryType = {
+  name: string;
+  alt: string;
+  icon: string;
+};
+type CategoriesType = {
+  index: number;
+  e: React.MouseEvent<HTMLImageElement, MouseEvent>;
+  noFilterBtn: HTMLImageElement;
+  filterContainer: HTMLDivElement;
+  changeClassName: ChangeClassName;
+  filterByCategory: (e: React.MouseEvent<HTMLImageElement, MouseEvent>) => void;
+  category: CategoryType;
+};
+
+type ChangeClassName = (
+  e: React.MouseEvent<HTMLImageElement, MouseEvent>,
+  noFilterBtn: HTMLImageElement,
+  filterContainer: HTMLDivElement,
+  boolean: boolean
+) => void;
 
 export type {
   PetType,
@@ -256,5 +294,7 @@ export type {
   UserContextType,
   AuthContextType,
   SettingsContextType,
+  ConfirmBoxType,
   ConfirmBoxButtonsType,
+  CategoriesType,
 };

@@ -1,8 +1,8 @@
 // import { useEffect, useContext } from "react";
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import GameGo from '../gameSetup/gameGo';
-import { useTask } from '../../../taskContext';
+import GameGo from 'src/styles/GameGo';
+import { useTask } from '../../context/taskContext';
 import { toast } from 'react-toastify';
 
 export default function GetTask() {

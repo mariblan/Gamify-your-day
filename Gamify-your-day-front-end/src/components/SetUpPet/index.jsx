@@ -1,8 +1,8 @@
-import './animalSelection.css';
+import 'src/styles/animalSelection.css';
 import { useState, useRef, useEffect } from 'react';
-import renderApples from '../../../utils/generateApples';
+import renderApples from 'src/utils/generateApples';
 import { useNavigate } from 'react-router-dom';
-import { useTask } from '../../../taskContext';
+import { useTask } from '../../context/taskContext';
 import { toast } from 'react-toastify';
 
 export default function AnimalSelection(index, id) {

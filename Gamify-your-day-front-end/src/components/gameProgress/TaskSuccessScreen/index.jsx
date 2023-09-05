@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
-import { useTask } from '../../../taskContext';
-import './timer.css';
-import canaryhappy from '../../../images/canary-happy.png';
-import applecolor from '../../../images/apple-color.png';
-import appleBW from '../../../images/apple-bw.png';
-import checkicon from '../../../images/check-icon.png';
-import checkCategory from '../../../utils/categoryCheck';
+import { useTask } from '../../../context/taskContext';
+import 'src/styles/timer.css';
+import canaryhappy from 'src/images/canary-happy.png';
+import applecolor from 'src/images/apple-color.png';
+import appleBW from '.src/images/apple-bw.png';
+import checkicon from 'src/images/check-icon.png';
+import checkCategory from 'src/utils/categoryCheck';
 import { useNavigate } from 'react-router-dom';
-import renderApples from '../../../utils/generateApples';
-import { addSuccess, removeFromToday } from '../../../fetchDB/fetchDB';
+import renderApples from 'src/utils/generateApples';
+import { addSuccess, removeFromToday } from 'src/fetchDB';
 
 export default function TaskSuccess() {
   const {

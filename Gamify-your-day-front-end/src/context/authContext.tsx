@@ -11,9 +11,10 @@ import { createContext, useState, useContext, useEffect } from 'react';
 // import { toastErrorSettings } from '../components/toastError/toastErrorSettings';
 import { AuthContextType, UserType } from 'src/types';
 // import { Options } from 'react-confirm-box/dist/types';
-import { checkValidToken } from '../fetchDB/fetchDB';
+import { checkValidToken } from 'src/fetchDB';
 import { toast } from 'react-toastify';
-import type { ToastOptions } from 'react-toastify';
+// import type { ToastOptions } from 'react-toastify';
+import { useSettings } from './settingsContext';
 
 const authContextDefaultValues: AuthContextType = {
   isAuth: false,
@@ -33,6 +34,7 @@ const AuthContext = createContext<AuthContextType>(authContextDefaultValues);
 const useAuth = () => useContext(AuthContext);
 
 const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
+  const { toastErrorSettings } = useSettings();
   const [isAuth, setIsAuth] = useState<boolean>(false);
   const [token, setToken] = useState<(() => string) | string>(
     localStorage.getItem('token') || ''
@@ -41,14 +43,14 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<UserType | null>(null);
   const [disabled, setDisabled] = useState<boolean>(false);
 
-  const toastErrorSettings: ToastOptions = {
-    position: 'top-center',
-    closeOnClick: true,
-    hideProgressBar: true,
-    theme: 'colored',
-    autoClose: 2000,
-  };
-  
+  // const toastErrorSettings: ToastOptions = {
+  //   position: 'top-center',
+  //   closeOnClick: true,
+  //   hideProgressBar: true,
+  //   theme: 'colored',
+  //   autoClose: 2000,
+  // };
+
   useEffect(() => {
     const verifyLogin = async (token: string | (() => string)) => {
       try {

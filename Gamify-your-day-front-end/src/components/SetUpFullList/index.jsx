@@ -1,12 +1,12 @@
-import './taskList.css';
+import 'src/styles/taskList.css';
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 // import searchIcon from "../../../images/search-icon.png";
-import noFilter from '../../../images/nofilter-icon.png';
-import { categories } from '../../../utils/categoryCheck';
-import changeClassName from '../../../utils/filterBtnsClassChange';
-import TaskList from './taskList';
-import { useTask } from '../../../taskContext';
+import noFilter from 'src/images/nofilter-icon.png';
+import { categories } from 'src/utils/categoryCheck';
+import changeClassName from 'src/utils/filterBtnsClassChange';
+import TaskList from './TaskList';
+import { useTask } from '../../context/taskContext';
 import { useAuth } from 'src/context';
 
 export default function AllTasks() {
@@ -33,7 +33,7 @@ export default function AllTasks() {
   useEffect(() => {
     if (filter.length === 0) noFilterBtn.current.className += ' filterSelected';
   }, [filter]);
-  
+
   // Adds filters to an array so the child component returns only tasks that have the same category
   // as the ones selected. Also disables filtering by favorites.
   const filterByCategory = (e) => {

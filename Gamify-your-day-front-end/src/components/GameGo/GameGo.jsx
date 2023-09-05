@@ -1,7 +1,7 @@
-import appleColor from '../../../images/apple-color.png';
-import { addFailed, removeFromToday } from '../../../fetchDB/fetchDB';
-import './gameGo.css';
-import { useTask } from '../../../taskContext';
+import appleColor from 'src/images/apple-color.png';
+import { addFailed, removeFromToday } from 'src/fetchDB';
+import 'src/styles/gameGo.css';
+import { useTask } from '../../context/taskContext';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import { confirm } from 'react-confirm-box';

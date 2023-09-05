@@ -1,7 +1,7 @@
-import TaskExpanded from './expandedTask';
-import TaskConcluded from './taskConcluded';
+import TaskExpanded from './TaskExpanded';
+import TaskConcluded from './TaskConcluded';
 import { useState, useEffect } from 'react';
-import { useTask } from '../../../taskContext';
+import { useTask } from '../../context/taskContext';
 
 export default function MyList({ showConcluded }) {
   const {

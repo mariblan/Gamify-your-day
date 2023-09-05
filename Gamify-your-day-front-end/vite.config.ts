@@ -7,6 +7,15 @@ export default defineConfig({
   resolve: {
     alias: {
       src: '/src',
+      // components: '/src/components',
+      // context: '/src/context',
+      // types: '/src/types',
+      // utiles: '/src/utiles',
+      // fetchDB: '/src/fetchDB',
+      // data: '/src/data',
+      // images: '/src/images',
+      // styles: '/src/styles',
+      // utils: '/src/utiles',
     },
   },
 });

@@ -1,9 +1,11 @@
 import { createContext, useContext, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { SettingsContextType } from 'src/types';
 import type { ToastOptions } from 'react-toastify';
 import { Options } from 'react-confirm-box/dist/types';
 import { PetType } from 'src/types';
 import pets from 'src/data/pets';
+import ConfirmBox from 'src/components/ConfirmBoxComponents';
 
 const settingsContextDefaultValues: SettingsContextType = {
   pets,
@@ -22,6 +24,26 @@ const settingsContextDefaultValues: SettingsContextType = {
     theme: 'colored',
     autoClose: 2000,
   },
+  // options: {
+  //   render: (message, onConfirm, onCancel) => {
+  //     return (
+  //       <ConfirmBox
+  //         onCancel={onCancel}
+  //         onConfirm={onConfirm}
+  //         taskFailure={false}
+  //         startGame={false}
+  //         isLogOut={false}
+  //         setPaused={() => {}}
+  //         setDisabled={() => {}}
+  //         navigate={() => {}}
+  //         setNextClicked={() => {}}
+  //         setCanChangePet={() => {}}
+  //       >
+  //         {message}
+  //       </ConfirmBox>
+  //     );
+  //   },
+  // },
 };
 
 const SettingsContext = createContext<SettingsContextType>(
@@ -39,6 +61,13 @@ const SettingsContextProvider = ({
   const [gameFinalScreen, setGameFinalScreen] = useState<boolean>(false);
   const [selectedPet, setSelectedPet] = useState<null | PetType>(null);
   const [canChangePet, setCanChangePet] = useState<boolean>(true);
+  const [taskFailure, setTaskFailure] = useState<boolean>(false);
+  const [startGame, setStartGame] = useState<boolean>(false);
+  const [isLogOut, setIsLogOut] = useState<boolean>(false);
+  const [paused, setPaused] = useState<boolean>(false);
+  const [nextClicked, setNextClicked] = useState<boolean>(false);
+  const navigate = useNavigate();
+
   const toastErrorSettings: ToastOptions = {
     position: 'top-center',
     closeOnClick: true,
@@ -47,35 +76,27 @@ const SettingsContextProvider = ({
     autoClose: 2000,
   };
 
-//  The options for the setup of the log out confirm box and the functions of its buttons.
-    const options: Options = {
-      render: (message, onConfirm, onCancel) => {
-        return (
-          <div className='react-confirm-box'>
-            <h4>{message}</h4>
-            <div className='confirm-box-btnWrapper'>
-              <button
-                onClick={() => {
-                  onConfirm();
-                  setDisabled(false);
-                  return logOut();
-                }}
-              >
-                Logout
-              </button>
-              <button
-                onClick={() => {
-                  onCancel();
-                  setDisabled(false);
-                }}
-              >
-                Continue
-              </button>
-            </div>
-          </div>
-        );
-      },
-    };
+  //  The options for the setup of the log out confirm box and the functions of its buttons.
+  const options: Options = {
+    render: (message, onConfirm, onCancel) => {
+      return (
+        <ConfirmBox
+          onCancel={onCancel}
+          onConfirm={onConfirm}
+          taskFailure={taskFailure}
+          startGame={startGame}
+          isLogOut={isLogOut}
+          setPaused={setPaused}
+          setDisabled={setDisabled}
+          navigate={navigate}
+          setNextClicked={setNextClicked}
+          setCanChangePet={setCanChangePet}
+        >
+          {message}
+        </ConfirmBox>
+      );
+    },
+  };
 
   return (
     <SettingsContext.Provider
@@ -90,6 +111,7 @@ const SettingsContextProvider = ({
         canChangePet,
         setCanChangePet,
         toastErrorSettings,
+        options,
       }}
     >
       {children}
