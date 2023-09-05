@@ -1,6 +1,6 @@
 import appleColor from 'src/images/apple-color.png';
 import { addFailed, removeFromToday } from 'src/DB/fetchDB';
-import './gameGo.css';
+import 'src/styles/gameGo.css';
 import { useTask } from 'src/context/taskContext';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';

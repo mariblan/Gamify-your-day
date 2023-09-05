@@ -1,21 +1,21 @@
 import { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import GameIntro from './components/GameIntroScreen';
-import Login from './components/Login';
-import Register from './components/Register';
-import RequireLogin from './components/RequireLogin';
-import AllTasks from './components/FullTaskList';
-import AnimalSelection from './components/SetUpPet';
-import GetTask from './components/GameGo';
-import TaskTimer from './components/Timer';
-import MyTaskList from './components/SetUpTodayList';
-import TaskSuccess from './components/TaskSuccess';
-import TaskFailure from './components/TaskFailure';
-import GameOver from './components/GameEndScreen';
-import { TaskProvider } from './context/taskContext';
-import { checkValidToken } from './DB/fetchDB';
-import { useAuth, AuthContextProvider } from './context';
+import GameIntro from 'src/components/GameIntroScreen';
+import Login from 'src/components/Login';
+import Register from 'src/components/Register';
+import RequireLogin from 'src/components/RequireLogin';
+import AllTasks from 'src/components/FullTaskList';
+import AnimalSelection from 'src/components/SetUpPet';
+import GetTask from 'src/components/GameGo';
+import TaskTimer from 'src/components/Timer';
+import MyTaskList from 'src/components/SetUpTodayList';
+import TaskSuccess from 'src/components/TaskSuccess';
+import TaskFailure from 'src/components/TaskFailure';
+import GameOver from 'src/components/GameEndScreen';
+import { TaskProvider } from 'src/context/taskContext';
+import { checkValidToken } from 'src/DB/fetchDB';
+import { useAuth, AuthContextProvider } from 'src/context';
 
 function App() {
   const { isAuth, setIsAuth, user, setUser, token, setToken } = useAuth();

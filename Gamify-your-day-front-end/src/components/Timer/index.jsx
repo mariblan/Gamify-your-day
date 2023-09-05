@@ -4,7 +4,7 @@ import apple from 'src/images/apple-color.png';
 import checkCategory from 'src/utils/categoryCheck';
 import TaskTimerRender from './taskTimerRender';
 import { useNavigate } from 'react-router-dom';
-import { useTask } from 'src/taskContext';
+import { useTask } from 'src/context/taskContext';
 import { TimerSeconds } from 'src/utils/timerSetTimeout';
 import { confirm } from 'react-confirm-box';
 import { addToProgress, addFailed, removeFromToday } from 'src/DB/fetchDB';

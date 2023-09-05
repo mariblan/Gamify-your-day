@@ -1,7 +1,7 @@
 // import { useEffect, useContext } from "react";
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import GameGo from 'src/styles/gameGo';
+import GameGo from './gameGo';
 import { useTask } from 'src/context/taskContext';
 import { toast } from 'react-toastify';
 

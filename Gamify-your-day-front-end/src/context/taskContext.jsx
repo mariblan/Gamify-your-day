@@ -6,7 +6,7 @@ import {
   clearSuccess,
   clearToday,
   clearCompleted,
-} from '../DB/fetchDB';
+} from 'src/DB/fetchDB';
 import { confirm } from 'react-confirm-box';
 import { useNavigate, Navigate } from 'react-router-dom';
 import canaryNorm from 'src/images/canary-normal.png';
